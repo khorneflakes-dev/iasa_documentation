@@ -5,8 +5,16 @@ import mermaid from 'astro-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://khorneflakes-dev.github.io',
+	base: '/iasa_documentation',
+	trailingSlash: 'always',
 	redirects: {
-		'/': '/es',
+		'/': '/iasa_documentation/es',
+	},
+	build: {
+		assets: 'assets',
+		inlineStylesheets: 'always',
+		format: 'directory',
 	},
 	integrations: [
 		starlight({

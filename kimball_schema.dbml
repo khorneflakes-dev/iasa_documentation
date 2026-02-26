@@ -1,0 +1,281 @@
+// Esquema Kimball IASA
+// Generado automáticamente basándose en el Diccionario de Datos
+
+Table dim_campana {
+  cam_id "VARCHAR(20)" [pk]
+  material_id "VARCHAR(20)"
+  nombre "VARCHAR(100)"
+  fecha_inicio DATETIME
+  fecha_fin DATETIME
+}
+
+Table dim_chofer {
+  chofer_id "VARCHAR(20)" [pk]
+  nombre "VARCHAR(100)"
+}
+
+Table dim_circuito {
+  circuito_id "VARCHAR(20)" [pk]
+  nombre "VARCHAR(100)"
+}
+
+Table dim_material {
+  material_id "VARCHAR(20)" [pk]
+  material_nombre "VARCHAR(100)"
+}
+
+Table dim_planta {
+  planta_id "VARCHAR(20)" [pk]
+  nombre "VARCHAR(100)"
+  propietario "VARCHAR(1)"
+  sap_id "VARCHAR(20)"
+  cen_codigo "VARCHAR(4)"
+  cen_codigo_recepcion "VARCHAR(4)"
+}
+
+Table dim_procedencia {
+  procedencia_id "VARCHAR(20)" [pk]
+  procedencia_nombre "VARCHAR(100)"
+  procedencia_zona "VARCHAR(1)"
+}
+
+Table dim_proveedor {
+  proveedor_id "VARCHAR(20)" [pk]
+  nombre "VARCHAR(100)"
+  direccion "VARCHAR(100)"
+  prc_id "VARCHAR(20)"
+  ci "VARCHAR(20)"
+  zona "VARCHAR(2)"
+  emp_codigo "VARCHAR(20)"
+}
+
+Table dim_stock_almacen {
+  centro_id "VARCHAR(4)" [pk]
+  almacen_id "VARCHAR(4)" [pk]
+  material_id "VARCHAR(20)" [pk]
+  planta_id "VARCHAR(20)" [pk]
+  capacidad DECIMAL
+  stock_libre DECIMAL
+  fecha_modificacion DATETIME
+  estado "VARCHAR(1)"
+  periodo_disp_apertura DATETIME
+  periodo_disp_cierre DATETIME
+}
+
+Table dim_usuario {
+  usuario_corr_id INT [pk]
+  usuario_id "VARCHAR(30)"
+  planta_id "VARCHAR(20)"
+  activo BIT
+  fecha_validez DBDATE
+  empresa_default "VARCHAR(100)"
+  num_dias_atras_bus_sync INT
+  todas_plantas BIT
+  autentica_windows BIT
+  caducidad_dias_contrasena INT
+  cantidad_bloqueo_fallidos INT
+}
+
+Table dim_vehiculo {
+  vehiculo_id "VARCHAR(20)" [pk]
+  marca "VARCHAR(20)"
+  color "VARCHAR(20)"
+  tipo "VARCHAR(30)"
+  ejes INT
+  capacidad INT
+  propietario BIT
+}
+
+Table fact_parqueo {
+  parqueo_id INT [pk]
+  correlativo_txn "VARCHAR(16)"
+  ttx_id "VARCHAR(20)"
+  circuito_id "VARCHAR(20)"
+  planta_id "VARCHAR(20)"
+  estado "VARCHAR(1)"
+  fecha_doc DATETIME
+  gui_id UNIQUEIDENTIFIER
+  fecha_hora_ingreso DATETIME
+  fecha_hora_salida DATETIME
+  chofer_id "VARCHAR(20)"
+  transporte_id "VARCHAR(20)"
+  vehiculo_id "VARCHAR(20)"
+  rut_codigo "VARCHAR(6)"
+  tip_id INT
+  observaciones "VARCHAR(500)"
+  pla_id INT
+  ttx_destino_siguinte "VARCHAR(20)"
+  con_id "VARCHAR(12)"
+  inspeccion "VARCHAR(2)"
+  estado_cola "VARCHAR(2)"
+  motivo_ingreso "VARCHAR(500)"
+  peso_recibir DECIMAL
+}
+
+Table fact_planta {
+  gui_id UNIQUEIDENTIFIER [pk]
+  vehiculo_id "VARCHAR(20)"
+  circuito_id "VARCHAR(20)"
+  planta_id "VARCHAR(20)"
+  material_id "VARCHAR(20)"
+  estado "VARCHAR(1)"
+  fecha_hora_peso_salida DATETIME
+  fecha_hora_ingreso_porteria DATETIME
+  fecha_hora_salida_porteria DATETIME
+  fecha_hora_ingreso_pesaje DATETIME
+  fecha_hora_salida_pesaje DATETIME
+  fecha_hora_ingreso_descarga DATETIME
+  fecha_hora_salida_descarga DATETIME
+  fecha_hora_creacion_laboratorio DATETIME
+  fecha_hora_aprobacion_laboratorio DATETIME
+}
+
+Table fact_porteria {
+  porteria_id INT [pk]
+  correlativo_txn "VARCHAR(16)"
+  planta_id "VARCHAR(20)"
+  vehiculo_id "VARCHAR(20)"
+  usuario_id_ingreso "VARCHAR(20)"
+  usuario_id_salida "VARCHAR(20)"
+  usuario_id_anulacion "VARCHAR(20)"
+  ttx_id "VARCHAR(20)"
+  estado "VARCHAR(1)"
+  fecha_doc DATETIME
+  fecha_hora_ingreso DATETIME
+  fecha_hora_salida DATETIME
+  fecha_hora_anulacion DATETIME
+  motivo_anulacion "VARCHAR(100)"
+  circuito_id "VARCHAR(20)"
+  observacion "VARCHAR(500)"
+  chata BIT
+  gui_id UNIQUEIDENTIFIER
+  ttx_destino_siguiente "VARCHAR(20)"
+  orden_manual "VARCHAR(20)"
+  sincronizacion DATETIME
+  chofer_id "VARCHAR(20)"
+  bal_id "VARCHAR(20)"
+}
+
+Table fact_recepcion {
+  recepcion_id INT [pk]
+  planta_id "VARCHAR(20)"
+  correlativo_txn "VARCHAR(16)"
+  fecha_doc DATETIME
+  ttx_id "VARCHAR(20)"
+  estado "VARCHAR(1)"
+  proveedor_id "VARCHAR(20)"
+  material_id "VARCHAR(20)"
+  peso_salida BIGINT
+  peso_neto BIGINT
+  grado FLOAT
+  peso_liquido R4
+  fecha_hora_peso_salida DATETIME
+  observaciones "VARCHAR(100)"
+  usuario_id_cerrado "VARCHAR(20)"
+  usuario_id_anulado "VARCHAR(20)"
+  pedido_sap "VARCHAR(16)"
+  entrada_mercancia_sap "VARCHAR(16)"
+  gestion_em "VARCHAR(4)"
+  lote_inspeccion_sap "VARCHAR(16)"
+  motivo_anulacion "VARCHAR(100)"
+  fecha_hora_anulacion DATETIME
+  circuito_id "VARCHAR(20)"
+  ttx_destino_siguiente "VARCHAR(20)"
+  gui_id UNIQUEIDENTIFIER
+  impresion BIT
+  numero_remision "VARCHAR(16)"
+  peso_remision INT
+  planta_id_origen "VARCHAR(20)"
+  nota_manual BIT
+  bal_id "VARCHAR(20)"
+  vehiculo_id "VARCHAR(20)"
+  sap BIT
+  cam_id "VARCHAR(20)"
+  peso_ingreso BIGINT
+  desicion_empleo_sap BIT
+  numero_nota_manual "VARCHAR(20)"
+  lab_humedad_parcial FLOAT
+  lab_impureza_parcial FLOAT
+  lab_aceite_parcial FLOAT
+  lab_danado_parcial FLOAT
+  lab_quemado_parcial FLOAT
+  lab_partido_parcial FLOAT
+  lab_grabico_parcial FLOAT
+  lab_graenfe_parcial FLOAT
+  lab_grainma1_parcial FLOAT
+  lab_grainma2_parcial FLOAT
+}
+
+Table fact_transferencia {
+  transferencia_id INT [pk]
+  planta_id "VARCHAR(20)"
+  correlativo_txn "VARCHAR(16)"
+  fecha_doc DATETIME
+  ttx_id "VARCHAR(20)"
+  estado "VARCHAR(1)"
+  material_id "VARCHAR(20)"
+  peso_ingreso BIGINT
+  peso_salida BIGINT
+  peso_neto BIGINT
+  grado FLOAT
+  fecha_hora_peso_salida DATETIME
+  observaciones "VARCHAR(100)"
+  usuario_id_cerrado "VARCHAR(20)"
+  usuario_id_anulado "VARCHAR(20)"
+  motivo_anulacion "VARCHAR(100)"
+  fecha_hora_anulacion DATETIME
+  circuito_id "VARCHAR(20)"
+  ttx_destino_siguiente "VARCHAR(20)"
+  gui_id UNIQUEIDENTIFIER
+  impresion BIT
+  numero_nota_manual "VARCHAR(20)"
+  nota_manual BIT
+  vehiculo_id "VARCHAR(20)"
+  cam_id "VARCHAR(20)"
+  sincronizacion DATETIME
+  planta_id_destno "VARCHAR(20)"
+}
+
+// Relaciones Dimensions
+Ref: dim_proveedor.prc_id > dim_procedencia.procedencia_id
+Ref: dim_campana.material_id > dim_material.material_id
+
+// Relaciones fact_parqueo
+Ref: fact_parqueo.circuito_id > dim_circuito.circuito_id
+Ref: fact_parqueo.planta_id > dim_planta.planta_id
+Ref: fact_parqueo.chofer_id > dim_chofer.chofer_id
+Ref: fact_parqueo.vehiculo_id > dim_vehiculo.vehiculo_id
+
+// Relaciones fact_planta
+Ref: fact_planta.vehiculo_id > dim_vehiculo.vehiculo_id
+Ref: fact_planta.circuito_id > dim_circuito.circuito_id
+Ref: fact_planta.planta_id > dim_planta.planta_id
+Ref: fact_planta.material_id > dim_material.material_id
+
+// Relaciones fact_porteria
+Ref: fact_porteria.planta_id > dim_planta.planta_id
+Ref: fact_porteria.vehiculo_id > dim_vehiculo.vehiculo_id
+Ref: fact_porteria.chofer_id > dim_chofer.chofer_id
+Ref: fact_porteria.circuito_id > dim_circuito.circuito_id
+
+// Relaciones fact_recepcion
+Ref: fact_recepcion.planta_id > dim_planta.planta_id
+Ref: fact_recepcion.proveedor_id > dim_proveedor.proveedor_id
+Ref: fact_recepcion.material_id > dim_material.material_id
+Ref: fact_recepcion.circuito_id > dim_circuito.circuito_id
+Ref: fact_recepcion.vehiculo_id > dim_vehiculo.vehiculo_id
+Ref: fact_recepcion.cam_id > dim_campana.cam_id
+
+// Relaciones fact_transferencia
+Ref: fact_transferencia.planta_id > dim_planta.planta_id
+Ref: fact_transferencia.material_id > dim_material.material_id
+Ref: fact_transferencia.circuito_id > dim_circuito.circuito_id
+Ref: fact_transferencia.vehiculo_id > dim_vehiculo.vehiculo_id
+Ref: fact_transferencia.cam_id > dim_campana.cam_id
+Ref: fact_transferencia.planta_id_destno > dim_planta.planta_id
+
+// Relaciones de Usuario
+Ref: fact_porteria.usuario_id_ingreso > dim_usuario.usuario_id
+Ref: fact_porteria.usuario_id_salida > dim_usuario.usuario_id
+Ref: fact_recepcion.usuario_id_cerrado > dim_usuario.usuario_id
+Ref: fact_transferencia.usuario_id_cerrado > dim_usuario.usuario_id

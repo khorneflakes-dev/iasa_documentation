@@ -4,6 +4,8 @@ sidebar:
   order: 14
 ---
 
+Registra los movimientos de transferencia de materiales entre plantas o almacenes dentro del sistema logístico de IASA. Cada registro incluye los pesos de ingreso, salida y neto, el grado del material, los usuarios responsables del cierre y anulación, la planta de destino y las marcas de tiempo del proceso, permitiendo el seguimiento y análisis de los traslados internos de materiales entre instalaciones.
+
 ## Diccionario de Datos
 
 | Columna | Tipo de Dato | Descripción |
@@ -37,7 +39,8 @@ sidebar:
 | planta_id_destno | `VARCHAR(20)` | Identificador único de transferencia |
 
 ## Origen (Base de Datos)
-`MovMatAlicorp`
+- **Base de Datos:** `MovMatAlicorp`
+- **Tabla:** `rmtTransferenciaTxn`
 
 ## Destino (Base de Datos)
 `db_Analitica_IASA`

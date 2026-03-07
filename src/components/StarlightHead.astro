@@ -1,0 +1,11 @@
+---
+// src/components/StarlightHead.astro
+// Override del Head de Starlight para inyectar la protección de autenticación
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/Head.astro';
+import AuthGuard from './AuthGuard.astro';
+import { AUTH_ENABLED } from '../config';
+---
+
+<Default {...Astro.props}><slot /></Default>
+{AUTH_ENABLED && <AuthGuard />}

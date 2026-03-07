@@ -4,6 +4,8 @@ sidebar:
   order: 13
 ---
 
+Almacena los eventos de recepción de materiales en las plantas, incluyendo los pesos de ingreso, salida y neto, el grado de calidad del material y los resultados parciales de análisis de laboratorio (humedad, impureza, aceite, grano dañado, quemado, partido, entre otros). Integra referencias a SAP para la gestión de pedidos, entradas de mercancía y lotes de inspección, siendo la tabla central del modelo analítico para el seguimiento de volúmenes recibidos y la calidad de los materiales acopiados.
+
 ## Diccionario de Datos
 
 | Columna | Tipo de Dato | Descripción |
@@ -57,7 +59,8 @@ sidebar:
 | lab_grainma2_parcial | `FLOAT` | Información sobre lab grainma2 parcial |
 
 ## Origen (Base de Datos)
-`MovMatAlicorp`
+- **Base de Datos:** `MovMatAlicorp`
+- **Tablas:** `rmtRecepcionTxn`, `rmtLaboratorioTxn`, `rmtLaboratorioDetalleTxn`
 
 ## Destino (Base de Datos)
 `db_Analitica_IASA`

@@ -4,6 +4,8 @@ sidebar:
   order: 2
 ---
 
+Almacena el catálogo de choferes registrados en el sistema de transporte, con su identificador único y nombre completo. Sirve como referencia para identificar al conductor responsable en los eventos de portería, parqueo y recepción, permitiendo el análisis de operaciones segmentado por chofer.
+
 ## Diccionario de Datos
 
 | Columna | Tipo de Dato | Descripción |
@@ -12,7 +14,8 @@ sidebar:
 | nombre | `VARCHAR(100)` | Nombre o descripción de choferes |
 
 ## Origen (Base de Datos)
-`MovMatAlicorp`
+- **Base de Datos:** `MovMatAlicorp`
+- **Tablas:** `rmtPorteriaTxn`, `rmtRecepcionTxn`
 
 ## Destino (Base de Datos)
 `db_Analitica_IASA`

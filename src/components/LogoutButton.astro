@@ -1,0 +1,57 @@
+---
+// src/components/LogoutButton.astro
+---
+
+<button id="logout-btn" title="Cerrar sesión" aria-label="Cerrar sesión">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+    aria-hidden="true">
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+    <polyline points="16 17 21 12 16 7" />
+    <line x1="21" y1="12" x2="9" y2="12" />
+  </svg>
+</button>
+
+<style>
+  #logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--sl-color-gray-2);
+    padding: 0.375rem;
+    border-radius: 0.25rem;
+    transition: color 0.2s, background-color 0.2s;
+  }
+
+  #logout-btn:hover {
+    color: var(--sl-color-text);
+    background-color: var(--sl-color-gray-6);
+  }
+</style>
+
+<script>
+  import { Amplify } from 'aws-amplify';
+  import { signOut } from 'aws-amplify/auth';
+
+  Amplify.configure({
+    Auth: {
+      Cognito: {
+        userPoolId: 'us-east-1_z84PYBuOM',
+        userPoolClientId: '7dhoflet374a7fl6jp6kmnr7n0',
+      },
+    },
+  });
+
+  document.getElementById('logout-btn')?.addEventListener('click', async () => {
+    try {
+      await signOut();
+      const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+      window.location.replace(base + '/login');
+    } catch (err) {
+      console.error('Error al cerrar sesión:', err);
+    }
+  });
+</script>

@@ -4,6 +4,8 @@ sidebar:
   order: 15
 ---
 
+Consolida los tiempos de ciclo de cada vehículo a lo largo de las distintas etapas del proceso dentro de la planta: portería de ingreso y salida, pesaje, descarga y laboratorio. Cada fila representa el paso completo de un vehículo por la planta, enlazado por un identificador de guía único, y constituye la principal fuente para el análisis de tiempos operacionales, cuellos de botella y eficiencia global del proceso de recepción de materiales.
+
 ## Diccionario de Datos
 
 | Columna | Tipo de Dato | Descripción |
@@ -25,7 +27,8 @@ sidebar:
 | fecha_hora_aprobacion_laboratorio | `DATETIME` | Registro de fecha/hora (fecha hora aprobacion laboratorio) |
 
 ## Origen (Base de Datos)
-`MovMatAlicorp`
+- **Base de Datos:** `MovMatAlicorp`
+- **Tablas:** `rmtRecepcionTxn`, `rmtPorteriaTxn`, `rmtPesajesTxn`, `rmtControlDescargaTxn`, `rmtLaboratorioTxn`
 
 ## Destino (Base de Datos)
 `db_Analitica_IASA`

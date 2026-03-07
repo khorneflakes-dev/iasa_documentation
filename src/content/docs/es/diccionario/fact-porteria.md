@@ -4,6 +4,8 @@ sidebar:
   order: 11
 ---
 
+Registra los eventos de entrada y salida de vehículos en la portería de cada planta. Cada registro representa una transacción de control de acceso, incluyendo los usuarios responsables del ingreso, salida y eventual anulación, el estado de la operación, los datos del vehículo y chofer, y las marcas de tiempo correspondientes. Es la tabla fuente para el análisis de flujo de vehículos, control de accesos y auditoría de operaciones de portería.
+
 ## Diccionario de Datos
 
 | Columna | Tipo de Dato | Descripción |
@@ -33,7 +35,8 @@ sidebar:
 | bal_id | `VARCHAR(20)` | Identificador único de portería |
 
 ## Origen (Base de Datos)
-`MovMatAlicorp`
+- **Base de Datos:** `MovMatAlicorp`
+- **Tabla:** `rmtPorteriaTxn`
 
 ## Destino (Base de Datos)
 `db_Analitica_IASA`

@@ -4,6 +4,8 @@ sidebar:
   order: 9
 ---
 
+Representa el estado del inventario por combinación de centro logístico, almacén, material y planta. Almacena la capacidad máxima permitida y el stock libre disponible en un momento dado, junto con la fecha de última modificación, el estado de disponibilidad y el período de apertura y cierre vigente, siendo la fuente principal para el análisis de capacidad y ocupación de almacenes.
+
 ## Diccionario de Datos
 
 | Columna | Tipo de Dato | Descripción |
@@ -20,7 +22,8 @@ sidebar:
 | periodo_disp_cierre | `DATETIME` | Cierre de periodo de validez de apertura |
 
 ## Origen (Base de Datos)
-`MovMatAlicorp`
+- **Base de Datos:** `MovMatAlicorp`
+- **Tabla:** `gntStockAlmacen`
 
 ## Destino (Base de Datos)
 `db_Analitica_IASA`

@@ -1,0 +1,10 @@
+---
+// src/components/SocialIcons.astro
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/SocialIcons.astro';
+import LogoutButton from './LogoutButton.astro';
+import { AUTH_ENABLED } from '../config';
+---
+
+<Default {...Astro.props}><slot /></Default>
+{AUTH_ENABLED && <LogoutButton />}

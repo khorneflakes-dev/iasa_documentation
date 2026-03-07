@@ -1,14 +1,20 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import mermaid from 'astro-mermaid';
+import rehypeMermaid from 'rehype-mermaidjs';
+
+// Detecta si estamos construyendo para Tauri (le pasaremos una variable manualmente)
+const isDesktop = process.env.TAURI_BUILD === 'false';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://khorneflakes-dev.github.io',
-	base: '/iasa_documentation',
-	trailingSlash: 'always',
-	redirects: {
+	// Si es escritorio, base es vacío. Si es producción web, es la ruta de GitHub.
+	base: isDesktop ? '/' : '/iasa_documentation',
+
+	// Solo aplica el redirect si NO es escritorio
+	// trailingSlash: 'always',
+	redirects: isDesktop ? {} : {
 		'/': '/iasa_documentation/es',
 	},
 	build: {
@@ -19,7 +25,16 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Documentación',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			// social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			components: {
+				Head: './src/components/StarlightHead.astro',
+				SocialIcons: './src/components/SocialIcons.astro',
+			},
+			logo: {
+				src: './src/assets/logoiasa.svg',
+				alt: 'Logo de IASA',
+				replacesTitle: true
+			},
 			defaultLocale: 'es',
 			locales: {
 				es: {
@@ -39,15 +54,21 @@ export default defineConfig({
 					autogenerate: { directory: 'etl' },
 				},
 				{
+					label: 'Despliegue y Monitoreo',
+					collapsed: true,
+					autogenerate: { directory: 'despliegue' },
+				},
+				{
 					label: 'Diagramas',
 					collapsed: true,
 					autogenerate: { directory: 'diagrama' },
 				},
 			],
 		}),
-		mermaid({
-			theme: 'forest',
-			autoTheme: true
-		})
 	],
+	markdown: {
+		rehypePlugins: [
+			[rehypeMermaid, { strategy: 'img-png' }]
+		],
+	},
 });

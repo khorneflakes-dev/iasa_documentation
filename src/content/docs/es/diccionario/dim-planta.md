@@ -4,6 +4,8 @@ sidebar:
   order: 4
 ---
 
+Almacena la información de las plantas o bodegas físicas donde se realizan los procesos de recepción, pesaje, transferencia y almacenamiento de materiales. Incluye el código SAP asociado, los códigos de centro logístico utilizados en la integración con SAP y la indicación de si la planta pertenece directamente a la empresa, siendo la dimensión geográfica principal del modelo analítico.
+
 ## Diccionario de Datos
 
 | Columna | Tipo de Dato | Descripción |
@@ -16,7 +18,8 @@ sidebar:
 | cen_codigo_recepcion | `VARCHAR(4)` | Información sobre cen codigo recepcion |
 
 ## Origen (Base de Datos)
-`MovMatAlicorp`
+- **Base de Datos:** `MovMatAlicorp`
+- **Tabla:** `gntPlantas`
 
 ## Destino (Base de Datos)
 `db_Analitica_IASA`

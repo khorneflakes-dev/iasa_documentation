@@ -1,12 +1,12 @@
 ---
 title: DBML
+sidebar:
+  order: 2
 ---
 
 Este es el código DBML para el esquema Kimball IASA. Puedes copiar y pegar este código en herramientas como <a href="https://chartdb.io" target="_blank" rel="noopener noreferrer">ChartDB</a>, <a href="https://dbdiagram.io" target="_blank" rel="noopener noreferrer">dbdiagram.io</a> o <a href="https://dbdocs.io" target="_blank" rel="noopener noreferrer">dbdocs.io</a> si deseas generar tu propio diagrama interactivo o exportarlo en otros formatos.
 
 ```dbml
-// --- TABLAS DE HECHOS (FACTS) ---
-
 Table "public"."fact_transferencia" {
   "transferencia_id" int [pk, not null]
   "planta_id" varchar(20) [ref: > "public"."dim_planta"."planta_id"]
@@ -22,7 +22,7 @@ Table "public"."fact_transferencia" {
   "estado" varchar(1)
   "peso_neto" bigint
   "grado" float
-  "gui_id" uuid [ref: > "public"."fact_planta"."gui_id"] // Conexión con el proceso central
+  "gui_id" uuid
 }
 
 Table "public"."fact_recepcion" {
@@ -39,7 +39,7 @@ Table "public"."fact_recepcion" {
   "fecha_doc" timestamp
   "peso_neto" bigint
   "grado" float
-  "gui_id" uuid [ref: > "public"."fact_planta"."gui_id"] // Conexión con el proceso central
+  "gui_id" uuid
 }
 
 Table "public"."fact_parqueo" {
@@ -51,21 +51,15 @@ Table "public"."fact_parqueo" {
   "correlativo_txn" varchar(16)
   "fecha_doc" timestamp
   "estado" varchar(1)
-  "gui_id" uuid [ref: > "public"."fact_planta"."gui_id"] // Conexión con el proceso central
+  "gui_id" uuid
 }
 
-Table "public"."fact_porteria" {
-  "porteria_id" int [pk, not null]
-  "planta_id" varchar(20) [ref: > "public"."dim_planta"."planta_id"]
-  "vehiculo_id" varchar(20) [ref: > "public"."dim_vehiculo"."vehiculo_id"]
-  "chofer_id" varchar(20) [ref: > "public"."dim_chofer"."chofer_id"]
-  "circuito_id" varchar(20) [ref: > "public"."dim_circuito"."circuito_id"]
-  "usuario_id_ingreso" varchar(20) [ref: > "public"."dim_usuario"."usuario_id"]
-  "usuario_id_salida" varchar(20) [ref: > "public"."dim_usuario"."usuario_id"]
-  "correlativo_txn" varchar(16)
-  "fecha_doc" timestamp
-  "estado" varchar(1)
-  "gui_id" uuid [ref: > "public"."fact_planta"."gui_id"] // Conexión con el proceso central
+Table "public"."dim_proveedor" {
+  "proveedor_id" varchar(20) [pk, not null]
+  "nombre" varchar(100)
+  "direccion" varchar(100)
+  "prc_id" varchar(20)
+  "ci" varchar(20)
 }
 
 Table "public"."fact_planta" {
@@ -78,16 +72,6 @@ Table "public"."fact_planta" {
   "fecha_hora_peso_salida" timestamp
   "fecha_hora_ingreso_porteria" timestamp
   "fecha_hora_salida_porteria" timestamp
-}
-
-// --- TABLAS DIMENSIONALES ---
-
-Table "public"."dim_proveedor" {
-  "proveedor_id" varchar(20) [pk, not null]
-  "nombre" varchar(100)
-  "direccion" varchar(100)
-  "prc_id" varchar(20) [ref: > "public"."dim_procedencia"."procedencia_id"]
-  "ci" varchar(20)
 }
 
 Table "public"."dim_circuito" {
@@ -152,6 +136,20 @@ Table "public"."dim_procedencia" {
   "procedencia_zona" varchar(1)
 }
 
+Table "public"."fact_porteria" {
+  "porteria_id" int [pk, not null]
+  "planta_id" varchar(20) [ref: > "public"."dim_planta"."planta_id"]
+  "vehiculo_id" varchar(20) [ref: > "public"."dim_vehiculo"."vehiculo_id"]
+  "chofer_id" varchar(20) [ref: > "public"."dim_chofer"."chofer_id"]
+  "circuito_id" varchar(20) [ref: > "public"."dim_circuito"."circuito_id"]
+  "usuario_id_ingreso" varchar(20) [ref: > "public"."dim_usuario"."usuario_id"]
+  "usuario_id_salida" varchar(20) [ref: > "public"."dim_usuario"."usuario_id"]
+  "correlativo_txn" varchar(16)
+  "fecha_doc" timestamp
+  "estado" varchar(1)
+  "gui_id" uuid
+}
+
 Table "public"."dim_usuario" {
   "usuario_id" varchar(20) [pk, not null]
   "usuario_corr_id" int [unique]
@@ -159,4 +157,5 @@ Table "public"."dim_usuario" {
   "activo" bit
   "fecha_validez" date
 }
+
 ```

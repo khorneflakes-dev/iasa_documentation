@@ -4,6 +4,8 @@ sidebar:
   order: 10
 ---
 
+Contiene la información de las campañas de acopio de materiales, incluyendo el período de vigencia (fecha de inicio y fecha de fin) y el material asociado a cada campaña. Permite segmentar y analizar los movimientos de recepción por ciclo de cosecha o campaña comercial, facilitando el seguimiento de volúmenes y condiciones de compra por período.
+
 ## Diccionario de Datos
 
 | Columna | Tipo de Dato | Descripción |
@@ -15,7 +17,8 @@ sidebar:
 | fecha_fin | `DATETIME` | Registro de fecha/hora (fecha fin) |
 
 ## Origen (Base de Datos)
-`MovMatAlicorp`
+- **Base de Datos:** `MovMatAlicorp`
+- **Tabla:** `rmtCampañas`
 
 ## Destino (Base de Datos)
 `db_Analitica_IASA`

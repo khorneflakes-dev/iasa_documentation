@@ -9,8 +9,8 @@ Este proceso coordina la carga de todas las tablas de hechos después de que las
 ## Flujo de Trabajo
 Se ejecutan secuencialmente las siguientes cargas:
 
-11. [Fact Portería](/es/etl/fact-porteria/)
-12. [Fact Parqueo](/es/etl/fact-parqueo/)
-13. [Fact Recepción](/es/etl/fact-recepcion/)
-14. [Fact Transferencia](/es/etl/fact-transferencia/)
-15. [Fact Planta](/es/etl/fact-planta/)
+11. [Fact Portería](../fact-porteria/)
+12. [Fact Parqueo](../fact-parqueo/)
+13. [Fact Recepción](../fact-recepcion/)
+14. [Fact Transferencia](../fact-transferencia/)
+15. [Fact Planta](../fact-planta/)

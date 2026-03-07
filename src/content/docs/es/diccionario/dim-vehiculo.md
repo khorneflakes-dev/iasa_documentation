@@ -4,6 +4,8 @@ sidebar:
   order: 6
 ---
 
+Almacena el catálogo de vehículos de transporte registrados en el sistema, con atributos físicos como marca, color, tipo de carrocería, número de ejes y capacidad de carga. El campo propietario indica si el vehículo pertenece a la empresa o a un transportista externo, siendo la dimensión de referencia para identificar la unidad de transporte en los eventos de portería, parqueo y recepción.
+
 ## Diccionario de Datos
 
 | Columna | Tipo de Dato | Descripción |
@@ -17,7 +19,8 @@ sidebar:
 | propietario | `BIT` | Información sobre propietario |
 
 ## Origen (Base de Datos)
-`MovMatAlicorp`
+- **Base de Datos:** `MovMatAlicorp`
+- **Tabla:** `gntVehiculos`
 
 ## Destino (Base de Datos)
 `db_Analitica_IASA`

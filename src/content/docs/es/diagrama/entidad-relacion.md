@@ -1,5 +1,7 @@
 ---
 title: Diagrama Entidad Relación
+sidebar:
+  order: 1
 tableOfContents: false
 ---
 
@@ -33,5 +35,5 @@ tableOfContents: false
   }
 </style>
 
-![Diagrama Entidad Relación](../../../../assets/diagrama.png)
+![Diagrama Entidad Relación](../../../../assets/diagrama2.png)
 

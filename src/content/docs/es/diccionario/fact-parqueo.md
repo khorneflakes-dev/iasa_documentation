@@ -4,6 +4,8 @@ sidebar:
   order: 12
 ---
 
+Registra los eventos de ingreso y salida de vehículos en el área de parqueo o cola de espera dentro de las plantas. Cada registro representa una estadía del vehículo en espera antes de pasar al siguiente paso del circuito, incluyendo el circuito asignado, el motivo de ingreso, el estado en la cola, el peso estimado a recibir y las marcas de tiempo de llegada y salida, siendo la fuente para el análisis de tiempos de espera y gestión de colas.
+
 ## Diccionario de Datos
 
 | Columna | Tipo de Dato | Descripción |
@@ -33,7 +35,8 @@ sidebar:
 | peso_recibir | `DECIMAL` | Información sobre peso recibir |
 
 ## Origen (Base de Datos)
-`MovMatAlicorp`
+- **Base de Datos:** `MovMatAlicorp`
+- **Tabla:** `patParqueoTxn`
 
 ## Destino (Base de Datos)
 `db_Analitica_IASA`

@@ -4,6 +4,8 @@ sidebar:
   order: 5
 ---
 
+Contiene el catálogo de usuarios del sistema operacional IASA, incluyendo su identificador de acceso, la planta asignada y el estado de activación. Registra también parámetros de configuración y seguridad como la empresa por defecto, los días de caducidad de contraseña, la cantidad máxima de intentos de inicio de sesión fallidos y si el usuario se autentica mediante Windows, facilitando la auditoría de accesos y operaciones por usuario.
+
 ## Diccionario de Datos
 
 | Columna | Tipo de Dato | Descripción |
@@ -21,7 +23,8 @@ sidebar:
 | cantidad_bloqueo_fallidos | `INT` | Información sobre cantidad bloqueo fallidos |
 
 ## Origen (Base de Datos)
-`MovMatAlicorp`
+- **Base de Datos:** `MovMatAlicorp`
+- **Tabla:** `sgtUsuarioSCL`
 
 ## Destino (Base de Datos)
 `db_Analitica_IASA`

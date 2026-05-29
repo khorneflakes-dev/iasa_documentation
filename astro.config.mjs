@@ -31,7 +31,7 @@ export default defineConfig({
 				SocialIcons: './src/components/SocialIcons.astro',
 			},
 			logo: {
-				src: './src/assets/logoiasa.svg',
+				src: './src/assets/logoIasa.svg',
 				alt: 'Logo de IASA',
 				replacesTitle: true
 			},

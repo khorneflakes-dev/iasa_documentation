@@ -14,3 +14,6 @@ Se ejecutan secuencialmente las siguientes cargas:
 13. [Fact Recepción](../fact-recepcion/)
 14. [Fact Transferencia](../fact-transferencia/)
 15. [Fact Planta](../fact-planta/)
+16. [Fact Camiones Cola](../fact-camiones-cola/)
+17. [Fact Proyección Recepción](../fact-proyeccion-recepcion/)
+18. [Fact Proyección Transferencia](../fact-proyeccion-transferencia/)
